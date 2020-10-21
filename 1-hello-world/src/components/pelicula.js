@@ -3,7 +3,6 @@ import React, { Component } from "react";
 
 const pelicula = (props) => {
   let box;
-
   if (props.puntaje == "No la vi aun") {
     box = <div className="novista">{props.puntaje}</div>;
   } else if (props.puntaje == "malo") {
