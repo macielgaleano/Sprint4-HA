@@ -10,10 +10,23 @@ import Carrito from "./components/carrito";
 // import { groceries } from "./models/groceries";
 
 function App() {
-  const [items, setItem] = React.useState([]);
+  const [items, setItems] = React.useState([]);
 
-  function addToCart(id) {
-    setItem([...items, id]);
+  function addToCart(item) {
+    const found = items.find((el) => el.id === item.id);
+    if (!found) {
+      setItems([...items, { ...item, quantity: 1 }]);
+    } else if (found) {
+      const elementsIndex = items.findIndex(
+        (element) => element.id === item.id
+      );
+      let newArrayItems = [...items];
+      newArrayItems[elementsIndex] = {
+        ...newArrayItems[elementsIndex],
+        quantity: newArrayItems[elementsIndex].quantity + 1,
+      };
+      setItems([...newArrayItems]);
+    }
   }
 
   return (
@@ -21,7 +34,7 @@ function App() {
       <div className="container">
         <div className="row">
           <div className="col-sm-5 col-12 mr-5">
-            <Gondola addCart={addToCart}></Gondola>
+            <Gondola addToCart={addToCart}></Gondola>
           </div>
           <div className="col-sm-5 col-12 mr-5">
             <Carrito items={items}></Carrito>

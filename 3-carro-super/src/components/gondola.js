@@ -1,16 +1,11 @@
 // import reactDOM from "react-dom";
 import React from "react";
-// import { bought } from "../models/groceries";
 import { groceries } from "../models/groceries";
 import "../../node_modules/font-awesome/css/font-awesome.min.css";
 
 //Cambiar nombres de archivos, .jsx
 
-const Gondola = (props, addToCart) => {
-  function addCart(e) {
-    props.addCart(e.target.getAttribute("id"));
-  }
-
+const Gondola = (props) => {
   return (
     <div className="container-not">
       <h2 className="display-5 text-center mt-2 mb-4">Productos disponibles</h2>
@@ -19,16 +14,17 @@ const Gondola = (props, addToCart) => {
           return (
             <li
               key={index}
+              onClick={() => props.addToCart(item)}
               className="list-group-item d-flex align-items-center"
             >
               <div className="d-flex">
                 <i
                   className="fa fa-plus-circle mr-2"
                   id={item.id}
-                  onClick={addCart}
+                  onClick={() => props.addToCart(item)}
                 ></i>
                 <strong className="mr-2">{item.name}</strong>
-                <p>({item.unitPrice} c/u)</p>
+                <p className="mr-2">({item.unitPrice} c/u)</p>
               </div>
             </li>
           );
