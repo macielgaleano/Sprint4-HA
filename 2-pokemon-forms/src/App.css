@@ -1,0 +1,52 @@
+.App {
+  text-align: center;
+}
+
+.container-not {
+  width: 70%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+
+.box-pokemon {
+  width: 15%;
+  margin: 20px 20px;
+  padding: 20px;
+  background: rgb(16, 14, 37);
+  border-radius: 5px;
+  height: 220px;
+}
+
+.box-pokemon p {
+  color: aliceblue;
+}
+
+.box-pokemon h2 {
+  color: aliceblue;
+}
+
+.mx-auto {
+  width: 45%;
+  margin: 60px auto;
+}
+
+input {
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 20px;
+}
+label {
+  margin-bottom: 20px;
+}
+
+.btn {
+  width: 20%;
+  background-color: black;
+  color: aliceblue;
+  padding: 10px;
+}
