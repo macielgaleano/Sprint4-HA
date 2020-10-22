@@ -1,30 +1,30 @@
-import reactDOM from "react-dom";
-import React, { Component } from "react";
+import React, { useEffect } from "react";
+import axios from "axios";
 
-const pelicula = (props) => {
-  let box;
-  if (props.puntaje == "No la vi aun") {
-    box = <div className="novista">{props.puntaje}</div>;
-  } else if (props.puntaje == "malo") {
-    box = <div className="malo">{props.puntaje}</div>;
-  } else if (props.puntaje == "bueno") {
-    box = <div className="bueno">{props.puntaje}</div>;
-  } else if (props.puntaje == "regular") {
-    box = <div className="regular">{props.puntaje}</div>;
-  } else if (props.puntaje == "excelente") {
-    box = <div className="excelente">{props.puntaje}</div>;
-  }
-
+const Pelicula = ({ id }) => {
+  const [title, setTitle] = React.useState("");
+  const [img, setImg] = React.useState("");
+  useEffect(() => {
+    const url = `https://api.themoviedb.org/3/movie/${id}?api_key=b67547c76e0dfd494f62c63f827e73f7&language=en-US`;
+    axios
+      .get(url)
+      .then((res) => {
+        console.log(res.data);
+        setTitle(res.data.title);
+        setImg(res.data.poster_path);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  });
   return (
     <div className="post">
-      <div className="titulo">
-        {props.name} ({props.year})
-      </div>
-      {box}
+      <div className="titulo">{title}</div>
+      {/* <div className="bueno">{props.puntaje}</div> */}
       <div className="subtitle">{}</div>
-      <img src={props.imagen} />
+      <img src={"https://image.tmdb.org/t/p/original" + img} />
     </div>
   );
 };
 
-export default pelicula;
+export default Pelicula;
