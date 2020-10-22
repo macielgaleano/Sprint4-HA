@@ -13,7 +13,7 @@ function App() {
     <div className="app">
       <Pelicula id={592350}></Pelicula>
       <Pelicula id={532067}></Pelicula>
-      <Pelicula id={347201}></Pelicula>
+      <Pelicula id={631132}></Pelicula>
 
       {/* <div className="tercero">
         <Persona name="Maciel" age="19"></Persona>
