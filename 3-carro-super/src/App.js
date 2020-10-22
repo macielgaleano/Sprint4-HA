@@ -7,25 +7,37 @@ import "../node_modules/font-awesome/css/font-awesome.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import Gondola from "./components/gondola";
 import Carrito from "./components/carrito";
+import PrecioTotal from "./components/PrecioTotal";
 // import { groceries } from "./models/groceries";
 
 function App() {
   const [items, setItems] = React.useState([]);
+
+  function auxiliarCart(item, itemCalc) {
+    const elementsIndex = items.findIndex((element) => element.id === item.id);
+    let itemsAux = [...items];
+    itemsAux[elementsIndex] = {
+      ...itemsAux[elementsIndex],
+      quantity: itemsAux[elementsIndex].quantity + itemCalc,
+    };
+    setItems([...itemsAux]);
+  }
 
   function addToCart(item) {
     const found = items.find((el) => el.id === item.id);
     if (!found) {
       setItems([...items, { ...item, quantity: 1 }]);
     } else if (found) {
-      const elementsIndex = items.findIndex(
-        (element) => element.id === item.id
-      );
-      let newArrayItems = [...items];
-      newArrayItems[elementsIndex] = {
-        ...newArrayItems[elementsIndex],
-        quantity: newArrayItems[elementsIndex].quantity + 1,
-      };
-      setItems([...newArrayItems]);
+      auxiliarCart(item, +1);
+    }
+  }
+
+  function removeFromCart(item) {
+    if (item.quantity > 1) {
+      auxiliarCart(item, -1);
+    } else if (item.quantity === 1) {
+      let filteredArrayItems = items.filter((el) => el.id !== item.id);
+      setItems([...filteredArrayItems]);
     }
   }
 
@@ -37,7 +49,19 @@ function App() {
             <Gondola addToCart={addToCart}></Gondola>
           </div>
           <div className="col-sm-5 col-12 mr-5">
-            <Carrito items={items}></Carrito>
+            <Carrito items={items} removeFromCart={removeFromCart}></Carrito>
+            {items.map((el, index) => {
+              if (Number(el.quantity) > 5 && (el.id === 20 || el.id === 21)) {
+                let messague =
+                  " Lo sentimos. No es posible comprar más unidades. Otras familias también necesitan abastecerse";
+                return (
+                  <div key={index} className="alert-danger mt-3 ">
+                    {messague}
+                  </div>
+                );
+              }
+            })}
+            <PrecioTotal items={items}></PrecioTotal>
           </div>
         </div>
       </div>
