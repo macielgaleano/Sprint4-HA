@@ -1,11 +1,11 @@
 import React from "react";
-import logo from "./logo.svg";
+// import logo from "./logo.svg";
 import "./App.css";
-import Welcome from "./components/welcome";
-import Title from "./components/title";
-import Subtitle from "./components/subtitle";
-import Description from "./components/description";
-import Persona from "./components/persona";
+// import Welcome from "./components/welcome";
+// import Title from "./components/title";
+// import Subtitle from "./components/subtitle";
+// import Description from "./components/description";
+// import Persona from "./components/persona";
 import Pelicula from "./components/pelicula";
 
 function App() {
