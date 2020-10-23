@@ -1,16 +1,12 @@
 // import reactDOM from "react-dom";
-import React, { useState } from "react";
 import "../../node_modules/font-awesome/css/font-awesome.min.css";
+import React from "react";
 import "../assets/HeaderHack.scss";
 import movies from "../models/movies.json";
 import Stars from "./Stars";
-import ModalMovie from "./ModalMovie";
 
 const Movie = ({ textSearched }) => {
   const [countStars, setCountStars] = React.useState(2);
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
 
   function getStars(countStars) {
     setCountStars(countStars);
@@ -25,24 +21,16 @@ const Movie = ({ textSearched }) => {
 
         {movies.map((item, index) => {
           if (
-            (item.title.includes(textSearched) ||
-              item.title.toLowerCase().includes(textSearched) ||
-              item.title.toUpperCase().includes(textSearched)) &&
-            item.vote_average > countStars * 2
+            item.original_title.toLowerCase().includes(textSearched) ||
+            item.original_title.toUpperCase().includes(textSearched) ||
+            item.original_title.includes(textSearched) ||
+            countStars * 2 < item.vote_average
           ) {
+            console.log(item.vote_average);
+            console.log(countStars);
             return (
-              <div key={index} className="col-6 col-md-4 col-sm-4 mt-4 ">
-                <img
-                  className="img-fluid"
-                  src={item.poster_path}
-                  alt=""
-                  onClick={handleShow}
-                />
-                <ModalMovie
-                  show={show}
-                  handleClose={handleClose}
-                  item={item}
-                ></ModalMovie>
+              <div key={index} className="col-6 col-md-2 col-sm-4 mt-5 ">
+                <img className="img-fluid" src={item.poster_path} alt="" />
               </div>
             );
           }
