@@ -1,24 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../node_modules/font-awesome/css/font-awesome.min.css";
+import "./App.css";
+import HeaderHack from "./components/HeaderHack";
+import Movie from "./components/Movie";
 
 function App() {
+  const [textSearched, setTextSearched] = React.useState();
+
+  function search(textSearched) {
+    setTextSearched(textSearched);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <HeaderHack search={search}></HeaderHack>
+      <Movie textSearched={textSearched}></Movie>
     </div>
   );
 }

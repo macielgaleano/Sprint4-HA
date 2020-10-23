@@ -1,0 +1,24 @@
+body {
+  .img-header {
+    background-image: linear-gradient(
+        to bottom,
+        rgba(248, 248, 250, 0),
+        rgba(117, 19, 93, 0.73)
+      ),
+      url("https://images7.alphacoders.com/737/737400.jpg");
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .titles {
+    width: 200;
+    height: 500px;
+    .input-search {
+      width: 60%;
+      margin-top: 50px;
+    }
+  }
+}
