@@ -2,7 +2,7 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/font-awesome/css/font-awesome.min.css";
 import "./App.css";
-import HeaderHack from "./components/HeaderHack";
+import HeaderHack from "./components/Header";
 import Movie from "./components/Movie";
 
 function App() {

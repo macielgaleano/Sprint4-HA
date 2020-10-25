@@ -4,6 +4,7 @@ import "../../node_modules/font-awesome/css/font-awesome.min.css";
 import "../assets/HeaderHack.scss";
 import Stars from "./Stars";
 import ModalMovie from "./ModalMovie";
+import ApiMovieDb from "../utilities/apiMovieDb";
 
 const Movie = ({ textSearched, movies, setMovies }) => {
   const [countStars, setCountStars] = React.useState(2);
@@ -16,27 +17,25 @@ const Movie = ({ textSearched, movies, setMovies }) => {
     setCountStars(countStars);
   }
 
-  useEffect(async () => {
-    if (textSearched) {
-      let url =
-        "https://api.themoviedb.org/3/search/movie?api_key=b67547c76e0dfd494f62c63f827e73f7&query=" +
-        textSearched.split(" ").join("+") +
-        "&per_page=10$page=" +
-        page;
-      fetch(url)
-        .then((data) => data.json())
-        .then((data) => {
-          setMovies(data.results);
-        });
-    }
-    return () => {};
-  }, [textSearched]);
+  let url =
+    "https://api.themoviedb.org/3/search/movie?api_key=b67547c76e0dfd494f62c63f827e73f7&query=" +
+    textSearched.split(" ").join("+") +
+    "&per_page=10$page=" +
+    page;
+
+  // GetmoviesFromApiForDiscover();
+  // GEtMoviesFromApiForStars(url, countStars)
+
+  textSearched.length > 0 &&
+    setMovies((url, textSearched) =>
+      ApiMovieDb.GetMoviesForText(url, textSearched)
+    );
 
   return (
     <div className="container-fluid">
       <div className="row mt-3 d-flex justify-content-center">
         <div className="col-12 d-flex justify-content-center">
-          {textSearched.length < 0 && <Stars getStars={getStars}></Stars>}
+          {textSearched.length > 0 && <Stars getStars={getStars}></Stars>}
         </div>
 
         {movies.length > 0 &&
