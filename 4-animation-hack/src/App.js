@@ -6,7 +6,8 @@ import HeaderHack from "./components/HeaderHack";
 import Movie from "./components/Movie";
 
 function App() {
-  const [textSearched, setTextSearched] = React.useState();
+  const [textSearched, setTextSearched] = React.useState("");
+  const [movies, setMovies] = React.useState([]);
 
   function search(textSearched) {
     setTextSearched(textSearched);
@@ -15,7 +16,11 @@ function App() {
   return (
     <div className="App">
       <HeaderHack search={search}></HeaderHack>
-      <Movie textSearched={textSearched}></Movie>
+      <Movie
+        textSearched={textSearched}
+        setMovies={setMovies}
+        movies={movies}
+      ></Movie>
     </div>
   );
 }

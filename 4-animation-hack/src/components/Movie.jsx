@@ -1,14 +1,14 @@
 // import reactDOM from "react-dom";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../../node_modules/font-awesome/css/font-awesome.min.css";
 import "../assets/HeaderHack.scss";
-import movies from "../models/movies.json";
 import Stars from "./Stars";
 import ModalMovie from "./ModalMovie";
 
-const Movie = ({ textSearched }) => {
+const Movie = ({ textSearched, movies, setMovies }) => {
   const [countStars, setCountStars] = React.useState(2);
   const [show, setShow] = useState(false);
+  const [page, setPage] = useState(1);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -16,25 +16,36 @@ const Movie = ({ textSearched }) => {
     setCountStars(countStars);
   }
 
+  useEffect(async () => {
+    if (textSearched) {
+      let url =
+        "https://api.themoviedb.org/3/search/movie?api_key=b67547c76e0dfd494f62c63f827e73f7&query=" +
+        textSearched.split(" ").join("+") +
+        "&per_page=10$page=" +
+        page;
+      fetch(url)
+        .then((data) => data.json())
+        .then((data) => {
+          setMovies(data.results);
+        });
+    }
+    return () => {};
+  }, [textSearched]);
+
   return (
-    <div className="container">
+    <div className="container-fluid">
       <div className="row mt-3 d-flex justify-content-center">
         <div className="col-12 d-flex justify-content-center">
-          <Stars getStars={getStars}></Stars>
+          {textSearched.length < 0 && <Stars getStars={getStars}></Stars>}
         </div>
 
-        {movies.map((item, index) => {
-          if (
-            (item.title.includes(textSearched) ||
-              item.title.toLowerCase().includes(textSearched) ||
-              item.title.toUpperCase().includes(textSearched)) &&
-            item.vote_average > countStars * 2
-          ) {
+        {movies.length > 0 &&
+          movies.map((item, index) => {
             return (
-              <div key={index} className="col-6 col-md-4 col-sm-4 mt-4 ">
+              <div key={index} className="col-6 col-md-2 col-sm-4 mt-4 ">
                 <img
-                  className="img-fluid"
-                  src={item.poster_path}
+                  className="img-fluid image"
+                  src={"https://image.tmdb.org/t/p/original" + item.poster_path}
                   alt=""
                   onClick={handleShow}
                 />
@@ -45,8 +56,7 @@ const Movie = ({ textSearched }) => {
                 ></ModalMovie>
               </div>
             );
-          }
-        })}
+          })}
       </div>
     </div>
   );

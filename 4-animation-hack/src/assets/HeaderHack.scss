@@ -20,5 +20,17 @@ body {
       width: 60%;
       margin-top: 50px;
     }
+    .input-search:focus {
+      transform: scale(1.5);
+      position: relative;
+      transition: 1ms;
+      z-index: 1000;
+    }
+  }
+  .image:hover {
+    transform: scale(1.5);
+    position: relative;
+    transition: 1ms;
+    z-index: 1000;
   }
 }
