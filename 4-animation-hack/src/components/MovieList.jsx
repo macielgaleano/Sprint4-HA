@@ -1,5 +1,5 @@
 // import reactDOM from "react-dom";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "../../node_modules/font-awesome/css/font-awesome.min.css";
 import "../assets/HeaderHack.scss";
 import Stars from "./Stars";
@@ -10,9 +10,9 @@ import { formatUrl } from "../utilities/formatUrl";
 const MovieList = ({ textSearched }) => {
   const [countStars, setCountStars] = React.useState(2);
   const [movies, setMovies] = React.useState([]);
-  const [scrolling, setScrolling] = React.useState(false);
-  const [scrollTop, setScrollTop] = React.useState(0);
-  const [page, setPage] = React.useState(1);
+  const [page, setPage] = React.useState();
+  const [scrolling, setScrolling] = useState(false);
+  const [scrollTop, setScrollTop] = useState(0);
 
   function getStars(countStars) {
     setCountStars(countStars);
@@ -41,32 +41,25 @@ const MovieList = ({ textSearched }) => {
     }
   }, [textSearched, page]);
 
-  useEffect(() => {
-    const onScroll = (e) => {
-      setScrollTop(e.target.documentElement.scrollTop);
-      setScrolling(window.innerHeight < scrollTop + 200);
-    };
-
-    window.addEventListener("scroll", onScroll);
-    if (scrolling) {
-      setPage(page + 1);
-      if (formatUrl.Rating(page, countStars)) {
-        fetch(formatUrl.Rating(page, countStars))
-          .then((data) => data.json())
-          .then((data) => {
-            setMovies([...movies, data.results]);
-          });
-      }
-      if (scrolling && textSearched.length > 0) {
-        fetch(formatUrl.Search(page, textSearched))
-          .then((data) => data.json())
-          .then((data) => {
-            setMovies(...movies, data.results);
-          });
-      }
+  if (scrolling) {
+    setPage(page + 1);
+    console.log(scrolling);
+    if (formatUrl.Rating(page, countStars)) {
+      fetch(formatUrl.Rating(page, countStars))
+        .then((data) => data.json())
+        .then((data) => {
+          setMovies([...movies, ...data.results]);
+          console.log(movies);
+        });
     }
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [scrollTop, page, scrolling, textSearched, countStars, movies]);
+    if (scrolling && textSearched.length > 0) {
+      fetch(formatUrl.Search(page, textSearched))
+        .then((data) => data.json())
+        .then((data) => {
+          setMovies(...movies, ...data.results);
+        });
+    }
+  }
 
   return (
     <div className="container-fluid">
