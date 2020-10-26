@@ -1,4 +1,4 @@
-import ModalMovie from "./ModalMovie";
+import MovieModal from "./MovieModal";
 import React, { useState } from "react";
 
 const Movie = ({ item }) => {
@@ -13,11 +13,11 @@ const Movie = ({ item }) => {
         alt=""
         onClick={handleShow}
       />
-      <ModalMovie
+      <MovieModal
         show={show}
         handleClose={handleClose}
         item={item}
-      ></ModalMovie>
+      ></MovieModal>
     </div>
   );
 };

@@ -6,7 +6,7 @@ import Stars from "./Stars";
 import Movie from "./Movie";
 import { formatUrl } from "../utilities/formatUrl";
 
-const ListMovies = ({ textSearched }) => {
+const MovieList = ({ textSearched }) => {
   const [countStars, setCountStars] = React.useState(2);
   const [movies, setMovies] = React.useState([]);
 
@@ -50,4 +50,4 @@ const ListMovies = ({ textSearched }) => {
   );
 };
 
-export default ListMovies;
+export default MovieList;

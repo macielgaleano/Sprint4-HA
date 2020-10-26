@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/font-awesome/css/font-awesome.min.css";
 import "./App.css";
 import HeaderHack from "./components/Header";
-import ListMovies from "./components/ListMovies";
+import MovieList from "./components/MovieList";
 
 function App() {
   const [textSearched, setTextSearched] = React.useState("");
@@ -15,7 +15,7 @@ function App() {
   return (
     <div className="App">
       <HeaderHack search={search}></HeaderHack>
-      <ListMovies textSearched={textSearched}></ListMovies>
+      <MovieList textSearched={textSearched}></MovieList>
     </div>
   );
 }

@@ -3,7 +3,7 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-const ModalMovie = ({ show, handleClose, item }) => {
+const MovieModal = ({ show, handleClose, item }) => {
   return (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton></Modal.Header>
@@ -41,4 +41,4 @@ const ModalMovie = ({ show, handleClose, item }) => {
   );
 };
 
-export default ModalMovie;
+export default MovieModal;
