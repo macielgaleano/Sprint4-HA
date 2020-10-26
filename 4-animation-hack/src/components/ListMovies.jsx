@@ -1,5 +1,5 @@
 // import reactDOM from "react-dom";
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import "../../node_modules/font-awesome/css/font-awesome.min.css";
 import "../assets/HeaderHack.scss";
 import Stars from "./Stars";
@@ -9,9 +9,6 @@ import { formatUrl } from "../utilities/formatUrl";
 const ListMovies = ({ textSearched }) => {
   const [countStars, setCountStars] = React.useState(2);
   const [movies, setMovies] = React.useState([]);
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
 
   function getStars(countStars) {
     setCountStars(countStars);
@@ -46,14 +43,7 @@ const ListMovies = ({ textSearched }) => {
 
         {movies.length > 0 &&
           movies.map((item, index) => {
-            return (
-              <Movie
-                item={item}
-                show={show}
-                handleClose={handleClose}
-                handleShow={handleShow}
-              ></Movie>
-            );
+            return <Movie item={item}></Movie>;
           })}
       </div>
     </div>

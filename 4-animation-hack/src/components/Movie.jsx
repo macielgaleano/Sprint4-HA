@@ -1,7 +1,10 @@
 import ModalMovie from "./ModalMovie";
-import React from "react";
+import React, { useState } from "react";
 
-const Movie = ({ item, show, handleClose, handleShow }) => {
+const Movie = ({ item }) => {
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   return (
     <div key={item.id} className="col-6 col-md-2 col-sm-4 mt-4 ">
       <img
