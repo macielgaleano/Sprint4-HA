@@ -9,10 +9,10 @@ let ApiMovieDb = {
           .then((data) => data.json())
           .then((data) => {
             setMovies(data.results);
-            return movies;
           });
       }
     }, [url, textSearched]);
+    return movies;
   },
   GetMoviesForRating: ({ url, countStars }) => {
     const [movies, setMovies] = useState([]);
