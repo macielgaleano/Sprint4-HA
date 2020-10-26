@@ -10,7 +10,6 @@ let ApiMovieDb = {
             return data.results;
           });
       }
-      return () => {};
     }, [textSearched]);
   },
 };
