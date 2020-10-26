@@ -28,7 +28,7 @@ const MovieModal = ({ show, handleClose, item }) => {
             <strong>Popularidadl:</strong> {item.popularity}
           </a>
           <a href="/" className="list-group-item list-group-item-action">
-            <strong>Lenguaje original:</strong> {item.overview}
+            <strong>Descripcion:</strong> {item.overview}
           </a>
         </div>
       </Modal.Body>

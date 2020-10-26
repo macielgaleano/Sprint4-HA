@@ -13,11 +13,13 @@ const Movie = ({ item }) => {
         alt=""
         onClick={handleShow}
       />
-      <MovieModal
-        show={show}
-        handleClose={handleClose}
-        item={item}
-      ></MovieModal>
+      {show && (
+        <MovieModal
+          show={show}
+          handleClose={handleClose}
+          item={item}
+        ></MovieModal>
+      )}
     </div>
   );
 };

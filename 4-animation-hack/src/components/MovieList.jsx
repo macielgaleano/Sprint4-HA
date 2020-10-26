@@ -1,12 +1,12 @@
 // import reactDOM from "react-dom";
-import React, { useEffect } from "react";
+import React from "react";
 import "../../node_modules/font-awesome/css/font-awesome.min.css";
 import "../assets/HeaderHack.scss";
 import Stars from "./Stars";
 import Movie from "./Movie";
 import { formatUrl } from "../utilities/formatUrl";
 import InfiniteScroll from "react-infinite-scroll-component";
-// import ApiMovieDb from "../utilities/apiMovieDb";
+import ApiMovieDb from "../utilities/apiMovieDb";
 
 const MovieList = ({ textSearched }) => {
   const [countStars, setCountStars] = React.useState(2);
@@ -17,43 +17,33 @@ const MovieList = ({ textSearched }) => {
     setCountStars(countStars);
   }
 
-  // ApiMovieDb.GetMoviesForText(formatUrl.Search(1, textSearched), textSearched);
-  // ApiMovieDb.GetMoviesForRating(formatUrl.Rating(1, countStars), countStars);
-
-  useEffect(() => {
-    if (formatUrl.Rating(1, countStars)) {
-      fetch(formatUrl.Rating(1, countStars))
-        .then((data) => data.json())
-        .then((data) => {
-          setMovies(data.results);
-        });
-    }
-  }, [countStars]);
-
-  useEffect(() => {
-    if (textSearched) {
-      fetch(formatUrl.Search(1, textSearched))
-        .then((data) => data.json())
-        .then((data) => {
-          setMovies(data.results);
-        });
-    }
-  }, [textSearched]);
+  ApiMovieDb.GetMoviesForText(
+    formatUrl.Search(1, textSearched),
+    textSearched,
+    movies,
+    setMovies
+  );
+  ApiMovieDb.GetMoviesForRating(
+    formatUrl.Rating(1, countStars),
+    countStars,
+    movies,
+    setMovies
+  );
 
   let fetchMoreData = () => {
     if (textSearched.length > 0) {
-      setPage(page + 1);
+      setPage((page) => page + 1);
       fetch(formatUrl.Search(page, textSearched))
         .then((data) => data.json())
         .then((data) => {
           setMovies([...movies, ...data.results]);
         });
     } else {
+      setPage((page) => page + 1);
       fetch(formatUrl.Rating(page, countStars))
         .then((data) => data.json())
         .then((data) => {
           setMovies([...movies, ...data.results]);
-          setPage(page + 1);
         });
     }
   };

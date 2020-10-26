@@ -1,8 +1,7 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 let ApiMovieDb = {
-  GetMoviesForText: (url, textSearched) => {
-    const [movies, setMovies] = useState([]);
+  GetMoviesForText: (url, textSearched, movies, setMovies) => {
     useEffect(() => {
       if (textSearched) {
         fetch(url)
@@ -12,10 +11,9 @@ let ApiMovieDb = {
           });
       }
     }, [url, textSearched]);
-    return movies;
+    return () => movies;
   },
-  GetMoviesForRating: ({ url, countStars }) => {
-    const [movies, setMovies] = useState([]);
+  GetMoviesForRating: (url, countStars, movies, setMovies) => {
     useEffect(() => {
       if (url) {
         fetch(url)
@@ -24,8 +22,8 @@ let ApiMovieDb = {
             setMovies(data.results);
           });
       }
+      return () => movies;
     }, [url, countStars]);
-    return movies;
   },
 };
 
