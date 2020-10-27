@@ -1,7 +1,7 @@
 // import reactDOM from "react-dom";
 import "../../node_modules/font-awesome/css/font-awesome.min.css";
 import React from "react";
-import "../assets/HeaderHack.scss";
+import "../assets/headerHack.scss";
 
 const Search = (props) => {
   return (

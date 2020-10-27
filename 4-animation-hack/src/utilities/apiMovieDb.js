@@ -10,8 +10,7 @@ let ApiMovieDb = {
             setMovies(data.results);
           });
       }
-    }, [url, textSearched]);
-    return () => movies;
+    }, [url, textSearched, setMovies]);
   },
   GetMoviesForRating: (url, countStars, movies, setMovies) => {
     useEffect(() => {
@@ -22,7 +21,6 @@ let ApiMovieDb = {
             setMovies(data.results);
           });
       }
-      return () => movies;
     }, [url, countStars]);
   },
 };

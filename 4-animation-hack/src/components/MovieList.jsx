@@ -1,34 +1,30 @@
 // import reactDOM from "react-dom";
 import React from "react";
 import "../../node_modules/font-awesome/css/font-awesome.min.css";
-import "../assets/HeaderHack.scss";
-import Stars from "./Stars";
+import "../assets/headerHack.scss";
+import Rating from "./Rating";
 import Movie from "./Movie";
 import { formatUrl } from "../utilities/formatUrl";
 import InfiniteScroll from "react-infinite-scroll-component";
-import ApiMovieDb from "../utilities/apiMovieDb";
+import useFectchMoviesForText from "../hooks/useFetchMoviesForText";
+import useFectchMoviesForRating from "../hooks/useFetchMoviesForRating";
 
 const MovieList = ({ textSearched }) => {
-  const [countStars, setCountStars] = React.useState(2);
+  const [rating, setRating] = React.useState(2);
   const [movies, setMovies] = React.useState([]);
   const [page, setPage] = React.useState(1);
 
-  function getStars(countStars) {
-    setCountStars(countStars);
+  function getRating(rating) {
+    setRating(rating);
   }
 
-  ApiMovieDb.GetMoviesForText(
+  useFectchMoviesForText(
     formatUrl.Search(1, textSearched),
     textSearched,
-    movies,
     setMovies
   );
-  ApiMovieDb.GetMoviesForRating(
-    formatUrl.Rating(1, countStars),
-    countStars,
-    movies,
-    setMovies
-  );
+
+  useFectchMoviesForRating(formatUrl.Rating(1, rating), rating, setMovies);
 
   let fetchMoreData = () => {
     if (textSearched.length > 0) {
@@ -40,7 +36,7 @@ const MovieList = ({ textSearched }) => {
         });
     } else {
       setPage((page) => page + 1);
-      fetch(formatUrl.Rating(page, countStars))
+      fetch(formatUrl.Rating(page, rating))
         .then((data) => data.json())
         .then((data) => {
           setMovies([...movies, ...data.results]);
@@ -52,9 +48,8 @@ const MovieList = ({ textSearched }) => {
     <div className="container-fluid">
       <div className="row mt-4 d-flex justify-content-center">
         <div className="col-12 d-flex justify-content-center">
-          {textSearched.length === 0 && <Stars getStars={getStars}></Stars>}
+          {textSearched.length === 0 && <Rating getRating={getRating}></Rating>}
         </div>
-
         {movies.length > 0 && (
           <InfiniteScroll
             dataLength={movies.length}

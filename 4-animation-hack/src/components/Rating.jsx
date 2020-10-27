@@ -3,8 +3,8 @@ import Rating from "@material-ui/lab/Rating";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 
-export default function Stars({ getStars }) {
-  const [countStars, setCountStars] = React.useState(5);
+export default function Stars({ getRating }) {
+  const [rating, setRating] = React.useState(5);
 
   return (
     <div>
@@ -12,10 +12,10 @@ export default function Stars({ getStars }) {
         <Typography component="legend">Filtra por puntaje: </Typography>
         <Rating
           name="simple-controlled"
-          value={countStars}
+          value={rating}
           onChange={(event, newValue) => {
-            setCountStars(newValue);
-            getStars(newValue);
+            setRating(newValue);
+            getRating(newValue);
           }}
         />
       </Box>
