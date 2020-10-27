@@ -8,6 +8,7 @@ import { formatUrl } from "../utilities/formatUrl";
 import InfiniteScroll from "react-infinite-scroll-component";
 import useFectchMoviesForText from "../hooks/useFetchMoviesForText";
 import useFectchMoviesForRating from "../hooks/useFetchMoviesForRating";
+import usefetchMoreMovies from "../hooks/useFetchMoreMovies";
 
 const MovieList = ({ textSearched }) => {
   const [rating, setRating] = React.useState(2);
@@ -26,24 +27,6 @@ const MovieList = ({ textSearched }) => {
 
   useFectchMoviesForRating(formatUrl.Rating(1, rating), rating, setMovies);
 
-  let fetchMoreData = () => {
-    if (textSearched.length > 0) {
-      setPage((page) => page + 1);
-      fetch(formatUrl.Search(page, textSearched))
-        .then((data) => data.json())
-        .then((data) => {
-          setMovies([...movies, ...data.results]);
-        });
-    } else {
-      setPage((page) => page + 1);
-      fetch(formatUrl.Rating(page, rating))
-        .then((data) => data.json())
-        .then((data) => {
-          setMovies([...movies, ...data.results]);
-        });
-    }
-  };
-
   return (
     <div className="container-fluid">
       <div className="row mt-4 d-flex justify-content-center">
@@ -54,7 +37,17 @@ const MovieList = ({ textSearched }) => {
           <InfiniteScroll
             dataLength={movies.length}
             className="row d-flex justify-content-center"
-            next={fetchMoreData}
+            next={() => {
+              usefetchMoreMovies(
+                textSearched,
+                page,
+                movies,
+                formatUrl,
+                rating,
+                setMovies,
+                setPage
+              );
+            }}
             hasMore={true}
             loader={<h4>Loading...</h4>}
           >

@@ -42,3 +42,17 @@ const MovieModal = ({ show, handleClose, item }) => {
 };
 
 export default MovieModal;
+
+// const [show, setShow] = useState(false);
+// const handleClose = () => setShow(false);
+// const handleShow = () => setShow(true);
+
+{
+  /* {show && (
+        // <MovieModal
+        //   show={show}
+        //   handleClose={handleClose}
+        //   item={item}
+        // ></MovieModal>
+      )} */
+}

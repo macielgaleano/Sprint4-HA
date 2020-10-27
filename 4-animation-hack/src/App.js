@@ -1,22 +1,18 @@
 import React from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Home from "./components/Home";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/font-awesome/css/font-awesome.min.css";
-import "./App.css";
-import HeaderHack from "./components/Header";
-import MovieList from "./components/MovieList";
+import MovieDetails from "./components/MovieDetails";
 
 function App() {
-  const [textSearched, setTextSearched] = React.useState("");
-
-  function search(textSearched) {
-    setTextSearched(textSearched);
-  }
-
   return (
-    <div className="App">
-      <HeaderHack search={search}></HeaderHack>
-      <MovieList textSearched={textSearched}></MovieList>
-    </div>
+    <Router>
+      <Route exact path="/" component={Home} />
+      <Route path="/pelicula/:id">
+        <MovieDetails></MovieDetails>
+      </Route>
+    </Router>
   );
 }
 

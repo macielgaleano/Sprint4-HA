@@ -16,4 +16,11 @@ export let formatUrl = {
       page
     );
   },
+  Id: (id) => {
+    return (
+      "https://api.themoviedb.org/3/movie/" +
+      id +
+      "?api_key=b67547c76e0dfd494f62c63f827e73f7&language=en-US"
+    );
+  },
 };
