@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
 import { formatUrl } from "../utilities/formatUrl";
 import useFetchMovieForId from "../hooks/useFetchMovieForId";
@@ -9,7 +9,6 @@ const MovieDetails = () => {
   const { id } = useParams();
 
   let movieAux = useFetchMovieForId(formatUrl.Id(id));
-  movieAux && console.log(movieAux.id);
 
   return (
     <div>

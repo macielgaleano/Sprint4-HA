@@ -1,8 +1,14 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Redirect,
+} from "react-router-dom";
 import Home from "./components/Home";
-import Error from "./components/Error";
+// import Error from "./components/Error";
 import About from "./components/About";
+import SearchPage from "./components/SearchPage.jsx";
 import Contact from "./components/Contact";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/font-awesome/css/font-awesome.min.css";
@@ -27,6 +33,9 @@ function App() {
               <Link className="nav-link text-white ml-4 mr-2" to="/contact">
                 Contacto <span className="sr-only">(current)</span>
               </Link>
+              <Link className="nav-link text-white ml-4 mr-2" to="/search">
+                Buscar <span className="sr-only">(current)</span>
+              </Link>
             </nav>
           </div>
         </div>
@@ -34,9 +43,12 @@ function App() {
       <Route exact={true} path="/" component={Home} />
       <Route path="/about" component={About} />
       <Route path="/contact" component={Contact} />
+      <Route path="/search" component={SearchPage} />
+      <Redirect from="/movie/:id" to="/pelicula/:id" />
       <Route path="/pelicula/:id">
         <MovieDetails></MovieDetails>
       </Route>
+
       {/* <Route path="*" exact={true} component={Error} /> */}
     </Router>
   );

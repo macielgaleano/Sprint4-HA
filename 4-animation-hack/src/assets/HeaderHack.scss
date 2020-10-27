@@ -64,3 +64,17 @@ body {
 .pb-10 {
   padding: 12rem;
 }
+
+.box-search {
+  display: flex;
+  height: 500px;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(248, 248, 250, 0),
+      rgba(117, 19, 93, 0.73)
+    ),
+    url("https://images7.alphacoders.com/737/737400.jpg");
+}
