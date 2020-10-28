@@ -78,3 +78,16 @@ body {
     ),
     url("https://images7.alphacoders.com/737/737400.jpg");
 }
+
+.active {
+  color: aqua;
+}
+
+.message {
+  z-index: 100000;
+}
+
+.auto {
+  margin-bottom: -200px;
+  height: 0;
+}
