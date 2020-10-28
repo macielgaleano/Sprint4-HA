@@ -14,7 +14,7 @@ const Search = (props) => {
       <input
         type="text"
         onChange={(e) => {
-          props.search(e.target.value);
+          props.handleSearch(e.target.value);
         }}
         name="textSearched"
         className="form-control "
