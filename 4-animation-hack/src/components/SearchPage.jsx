@@ -11,7 +11,7 @@ const SearchPage = (props) => {
   const [textSearched, setTextSearched] = React.useState("");
   const [page, setPage] = React.useState(1);
 
-  function search(textSearched) {
+  function handleSearch(textSearched) {
     setTextSearched(textSearched);
   }
 
@@ -29,7 +29,7 @@ const SearchPage = (props) => {
               <h1 className="text-center mt-4 mb-5 text-white">
                 Busca tu pelicula favorita!
               </h1>
-              <Search search={search}></Search>
+              <Search handleSearch={handleSearch}></Search>
             </div>
           </div>
         </div>

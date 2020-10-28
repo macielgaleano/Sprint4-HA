@@ -32,9 +32,9 @@ const MovieDetails = () => {
       }, 5000)} */}
       {movieAux && (
         <div className="main">
-          <div className="container-fluid">
+          <div className="container">
             <div className="row">
-              <div className="col-5">
+              <div className="col-3">
                 <img
                   className="img-fluid"
                   src={
@@ -43,8 +43,8 @@ const MovieDetails = () => {
                   alt=""
                 />
               </div>
-              <div className="col-7 row d-flex align-items-center ">
-                <div className="row d-flex align-items-center">
+              <div className="col-8 row d-flex align-items-start ">
+                <div className="row r">
                   <h1 className="col-12 display-4 text-white ">
                     {movieAux.title}
                   </h1>

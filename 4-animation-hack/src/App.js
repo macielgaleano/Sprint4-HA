@@ -4,6 +4,7 @@ import {
   Route,
   NavLink,
   Redirect,
+  Switch,
 } from "react-router-dom";
 import useIsOnline from "./hooks/useIsOnline";
 import Home from "./components/Home";
@@ -64,16 +65,18 @@ function App() {
           </div>
         </div>
       </div>
-      <Route exact={true} path="/" component={Home} />
-      <Route path="/about" component={About} />
-      <Route path="/contact" component={Contact} />
-      <Route path="/search" component={SearchPage} />
-      {/* <Redirect from="/movie/:id" to="/pelicula/:id" /> */}
-      <Route path="/pelicula/:id">
-        <MovieDetails></MovieDetails>
-      </Route>
+      <Switch>
+        <Route exact={true} path="/" component={Home} />
+        <Route path="/about" component={About} />
+        <Route path="/contact" component={Contact} />
+        <Route path="/search" component={SearchPage} />
+        <Redirect from="/movie/:id" to="/pelicula/:id" />
+        <Route path="/pelicula/:id">
+          <MovieDetails></MovieDetails>
+        </Route>
 
-      <Route path="*" exact={true} component={Error} />
+        <Route path="*" component={Error} />
+      </Switch>
     </Router>
   );
 }
