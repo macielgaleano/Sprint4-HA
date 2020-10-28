@@ -3,7 +3,7 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-const ModalMovie = ({ show, handleClose, item }) => {
+const MovieModal = ({ show, handleClose, item }) => {
   return (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton></Modal.Header>
@@ -28,7 +28,7 @@ const ModalMovie = ({ show, handleClose, item }) => {
             <strong>Popularidadl:</strong> {item.popularity}
           </a>
           <a href="/" className="list-group-item list-group-item-action">
-            <strong>Lenguaje original:</strong> {item.overview}
+            <strong>Descripcion:</strong> {item.overview}
           </a>
         </div>
       </Modal.Body>
@@ -41,4 +41,18 @@ const ModalMovie = ({ show, handleClose, item }) => {
   );
 };
 
-export default ModalMovie;
+export default MovieModal;
+
+// const [show, setShow] = useState(false);
+// const handleClose = () => setShow(false);
+// const handleShow = () => setShow(true);
+
+{
+  /* {show && (
+        // <MovieModal
+        //   show={show}
+        //   handleClose={handleClose}
+        //   item={item}
+        // ></MovieModal>
+      )} */
+}

@@ -9,7 +9,6 @@ const Pelicula = ({ id }) => {
     axios
       .get(url)
       .then((res) => {
-        console.log(res.data);
         setTitle(res.data.title);
         setImg(res.data.poster_path);
       })
