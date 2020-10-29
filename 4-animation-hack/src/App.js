@@ -32,22 +32,13 @@ function App() {
               <NavLink className="nav-NavLink text-white ml-4 mr-2" to="/about">
                 Acerca de
               </NavLink>
-              <NavLink
-                className="nav-NavLink text-white ml-4 mr-2"
-                to="/contact"
-              >
+              <NavLink className="nav-NavLink text-white ml-4 mr-2" to="/contact">
                 Contacto
               </NavLink>
-              <NavLink
-                className="nav-NavLink text-white ml-4 mr-2"
-                to="/search"
-              >
+              <NavLink className="nav-NavLink text-white ml-4 mr-2" to="/search">
                 Buscar
               </NavLink>
-              <NavLink
-                className="nav-NavLink text-white ml-4 mr-2"
-                to="/search"
-              >
+              <NavLink className="nav-NavLink text-white ml-4 mr-2" to="/search">
                 {useIsOnline() && (
                   <div className="d-flex justify-content-center">
                     <p className="m-0 mr-1">Online</p>
@@ -74,7 +65,6 @@ function App() {
         <Route path="/pelicula/:id">
           <MovieDetails></MovieDetails>
         </Route>
-
         <Route path="*" component={Error} />
       </Switch>
     </Router>

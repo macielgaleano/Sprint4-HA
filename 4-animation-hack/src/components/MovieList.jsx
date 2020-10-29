@@ -19,11 +19,7 @@ const MovieList = ({ textSearched }) => {
     setRating(rating);
   }
 
-  useFectchMoviesForText(
-    formatUrl.Search(1, textSearched),
-    textSearched,
-    setMovies
-  );
+  useFectchMoviesForText(formatUrl.Search(1, textSearched), textSearched, setMovies);
 
   useFectchMoviesForRating(formatUrl.Rating(1, rating), rating, setMovies);
 

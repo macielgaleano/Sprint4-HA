@@ -8,8 +8,8 @@ const Error = () => {
       {
         <div className="container-fluid">
           <div className="row">
-            <div className="col-12  text d-flex flex-column justify-content-center align-items-center auto p-0">
-              <div className="">
+            <div className="col-12 h-100 text d-flex flex-column justify-content-center align-items-center auto p-0">
+              <div className="h-5 d-flex justify-content-center">
                 <span className="txt">E</span>
                 <span className="txt1">R</span>
                 <span className="txt2">R</span>

@@ -34,7 +34,7 @@ const MovieDetails = () => {
         <div className="main">
           <div className="container">
             <div className="row">
-              <div className="col-3">
+              <div className="col-md-4 col-lg-4 col-sm-12 col-12">
                 <img
                   className="img-fluid"
                   src={
@@ -43,24 +43,22 @@ const MovieDetails = () => {
                   alt=""
                 />
               </div>
-              <div className="col-8 row d-flex align-items-start ">
-                <div className="row r">
-                  <h1 className="col-12 display-4 text-white ">
+              <div className="col-md-8 col-lg-8 col-sm-12 row d-flex align-items-start ">
+                <div className="row">
+                  <h1 className="col-12 display-4 mt-3 text-white text-center">
                     {movieAux.title}
                   </h1>
-                  <h2 className="col-12 display-5 mb-3 mt-3 text-white">
+                  <h2 className="col-12 display-5 mb-3 mt-3 text-white text-center">
                     Titulo original:
                     {movieAux.original_title}{" "}
                   </h2>
                   <hr />
-                  <h3 className="col-12 mt-3 text-white lead text-justify">
-                    Sinopsis:{" "}
-                  </h3>
-                  <p className="col-12 mt-2 mb-2 text-white">
+                  <h3 className="col-12 mt-3 text-white lead">Sinopsis: </h3>
+                  <p className="col-12 mt-2 mb-2 text-white text-justify overview">
                     {movieAux.overview}
                   </p>
 
-                  <Link to="/" className="ml-3 mt-2 btn btn-primary">
+                  <Link to="/" className="ml-3 mt-2 mx-auto btn btn-primary">
                     Volver a home
                   </Link>
                 </div>
