@@ -8,8 +8,8 @@ import { actionCounterModify } from "../../actions/actionCounterModify";
 import { useSelector, useDispatch } from "react-redux";
 
 const Counter = () => {
+  let number = useSelector((state) => state.counterReducer);
   const dispatch = useDispatch();
-  let number = useSelector((state) => state);
 
   let handlePlus = () => {
     dispatch(actionCounterAdd());
@@ -35,7 +35,7 @@ const Counter = () => {
             </div>
           </div>
           <div className="col-2 mx-auto mt-5">
-            <div className="form-group d-flex">
+            <div className="form-group d-flex form ">
               <label className="mr-4" for="">
                 Comienzo
               </label>

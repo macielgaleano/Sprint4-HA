@@ -1,0 +1,44 @@
+.main {
+  background: rgb(7, 7, 8);
+  height: 1000px;
+}
+
+.main .line {
+  border-bottom: 3px solid white;
+}
+
+.list {
+  padding-top: 10px;
+}
+
+.list .form {
+  border: none;
+  padding: 5px;
+  font-size: 20px;
+}
+
+.icon {
+  font-size: 1.6rem;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  color: white;
+}
+input:-moz-placeholder,
+textarea:-moz-placeholder {
+  color: white;
+}
+
+.checkbox {
+  font-size: 5px;
+  padding: 2px;
+}
+
+ul {
+  padding-inline-start: 5px;
+}
+
+.iconsize-red {
+  font-size: 1.4rem;
+}
