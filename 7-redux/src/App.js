@@ -1,8 +1,16 @@
-import logo from "./logo.svg";
-import "./App.css";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Counter from "./components/Counter/Counter";
 
 function App() {
-  return <div className="App"></div>;
+  return (
+    <Router>
+      <Route to="/" exact={true} component={Counter}></Route>
+    </Router>
+  );
 }
 
 export default App;
+
+// NavLink,
+// Redirect,
+// Switch,
