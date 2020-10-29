@@ -5,8 +5,8 @@ import "../assets/headerHack.scss";
 import Search from "./Search";
 
 const headerHack = (props) => {
-  function search(textSearched) {
-    props.search(textSearched);
+  function handleSearch(textSearched) {
+    props.handleSearch(textSearched);
   }
 
   return (
@@ -18,7 +18,7 @@ const headerHack = (props) => {
               <h2 className="Text-cemter text-white">
                 El lugar que estabas buscando, el mejor sitio de Fukuoka
               </h2>
-              <Search search={search}></Search>
+              <Search handleSearch={handleSearch}></Search>
             </div>
           </div>
         </div>

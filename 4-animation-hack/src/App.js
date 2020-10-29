@@ -4,6 +4,7 @@ import {
   Route,
   NavLink,
   Redirect,
+  Switch,
 } from "react-router-dom";
 import useIsOnline from "./hooks/useIsOnline";
 import Home from "./components/Home";
@@ -31,22 +32,13 @@ function App() {
               <NavLink className="nav-NavLink text-white ml-4 mr-2" to="/about">
                 Acerca de
               </NavLink>
-              <NavLink
-                className="nav-NavLink text-white ml-4 mr-2"
-                to="/contact"
-              >
+              <NavLink className="nav-NavLink text-white ml-4 mr-2" to="/contact">
                 Contacto
               </NavLink>
-              <NavLink
-                className="nav-NavLink text-white ml-4 mr-2"
-                to="/search"
-              >
+              <NavLink className="nav-NavLink text-white ml-4 mr-2" to="/search">
                 Buscar
               </NavLink>
-              <NavLink
-                className="nav-NavLink text-white ml-4 mr-2"
-                to="/search"
-              >
+              <NavLink className="nav-NavLink text-white ml-4 mr-2" to="/search">
                 {useIsOnline() && (
                   <div className="d-flex justify-content-center">
                     <p className="m-0 mr-1">Online</p>
@@ -64,16 +56,17 @@ function App() {
           </div>
         </div>
       </div>
-      <Route exact={true} path="/" component={Home} />
-      <Route path="/about" component={About} />
-      <Route path="/contact" component={Contact} />
-      <Route path="/search" component={SearchPage} />
-      {/* <Redirect from="/movie/:id" to="/pelicula/:id" /> */}
-      <Route path="/pelicula/:id">
-        <MovieDetails></MovieDetails>
-      </Route>
-
-      <Route path="*" exact={true} component={Error} />
+      <Switch>
+        <Route exact={true} path="/" component={Home} />
+        <Route path="/about" component={About} />
+        <Route path="/contact" component={Contact} />
+        <Route path="/search" component={SearchPage} />
+        <Redirect from="/movie/:id" to="/pelicula/:id" />
+        <Route path="/pelicula/:id">
+          <MovieDetails></MovieDetails>
+        </Route>
+        <Route path="*" component={Error} />
+      </Switch>
     </Router>
   );
 }
