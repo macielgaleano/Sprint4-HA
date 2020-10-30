@@ -1,5 +1,5 @@
 .main {
-  background: rgb(7, 7, 8);
+  background: rgb(29, 21, 21);
   height: 1000px;
 }
 
@@ -14,7 +14,7 @@
 .list .form {
   border: none;
   padding: 5px;
-  font-size: 20px;
+  font-size: 1.6rem;
 }
 
 .icon {
@@ -33,6 +33,16 @@ textarea:-moz-placeholder {
 .checkbox {
   font-size: 5px;
   padding: 2px;
+}
+
+.itemName {
+  font-size: 1.6rem;
+}
+
+.square {
+  font-size: 1.6rem;
+  outline: 1px solid black;
+  color: white;
 }
 
 ul {

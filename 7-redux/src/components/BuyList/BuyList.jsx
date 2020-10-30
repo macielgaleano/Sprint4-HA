@@ -1,6 +1,7 @@
 import React from "react";
 import { actionBuyListAdd } from "../../actions/actionBuyListAdd";
 import { actionBuyListRemove } from "../../actions/actionBuyListRemove";
+import { actionBuyListCheckItem } from "../../actions/actionBuyListCheckItem";
 import { useDispatch, useSelector } from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "font-awesome/css/font-awesome.min.css";
@@ -11,7 +12,7 @@ const BuyList = () => {
   const dispatch = useDispatch();
 
   let handleCheck = (e) => {
-    console.log(e.target.value);
+    dispatch(actionBuyListCheckItem(e.currentTarget.attributes[1].value));
   };
 
   let handleMinus = (e) => {
@@ -29,15 +30,16 @@ const BuyList = () => {
   let items = useSelector((state) => state.buyListReducer);
 
   return (
-    <div className="main">
+    <div className="main d-flex flex-column">
+      <h1 className="text-white text-center">Lista de compra</h1>
       <div className="container">
         <div className="row ">
-          <div className="col-8 mx-auto bg-success list rounded pb-3">
+          <div className="col-5 mx-auto bg-success list rounded pb-3 mt-5">
             <div className="form-group d-flex align-items-center mb-3  line">
               <input
                 type="text"
                 placeholder="Agregar item"
-                className="form-control bg-success text-white form"
+                className="form-control bg-success text-white  form"
                 onChange={handleChange}
               />
               <i
@@ -56,14 +58,17 @@ const BuyList = () => {
                         className="bg-light pb-4 mt-2 d-flex justify-content-between align-items-center"
                       >
                         <div className="d-flex align-items-center ">
-                          <div>
-                            <input
-                              className="checkbox ml-2 bg-success"
-                              type="checkbox"
-                              onChange={handleCheck}
-                            />
-                          </div>
-                          <p className="m-0 ml-3">{item}</p>
+                          {item.bought === false && (
+                            <i
+                              className="fa fa-square square "
+                              item={index}
+                              onClick={handleCheck}
+                            ></i>
+                          )}
+                          {item.bought === true && (
+                            <i className="fa fa-check icon" aria-hidden="true"></i>
+                          )}
+                          <p className="m-0 ml-3 itemName">{item.itemName}</p>
                         </div>
                         <i
                           className="fa fa-minus-square iconsize-red mr-1 text-danger"
