@@ -3,12 +3,14 @@ import { actionBuyListAdd } from "../../actions/actionBuyListAdd";
 import { actionBuyListRemove } from "../../actions/actionBuyListRemove";
 import { actionBuyListCheckItem } from "../../actions/actionBuyListCheckItem";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "font-awesome/css/font-awesome.min.css";
 import "./buyList.css";
 
 const BuyList = () => {
   const [inputValue, setinputValue] = React.useState();
+  let items = useSelector((state) => state.buyListReducer);
   const dispatch = useDispatch();
 
   let handleCheck = (e) => {
@@ -27,15 +29,15 @@ const BuyList = () => {
     setinputValue(e.target.value);
   };
 
-  let items = useSelector((state) => state.buyListReducer);
-
   return (
     <div className="main d-flex flex-column">
-      <h1 className="text-white text-center">Lista de compra</h1>
       <div className="container">
         <div className="row ">
-          <div className="col-5 mx-auto bg-success list rounded pb-3 mt-5">
+          <div className="col-7 mx-auto bg-success list rounded pb-3 mt-5">
             <div className="form-group d-flex align-items-center mb-3  line">
+              <Link to="">
+                <i className="fa fa-arrow-left mr-3 text-white icon"></i>
+              </Link>
               <input
                 type="text"
                 placeholder="Agregar item"
@@ -50,34 +52,33 @@ const BuyList = () => {
             </div>
             <div className="bg-light rounded h-25 pb-4">
               <ul className="bg-light pt-2">
-                {items &&
-                  items.sort().map((item, index) => {
-                    return (
-                      <li
-                        key={index}
-                        className="bg-light pb-4 mt-2 d-flex justify-content-between align-items-center"
-                      >
-                        <div className="d-flex align-items-center ">
-                          {item.bought === false && (
-                            <i
-                              className="fa fa-square square "
-                              item={index}
-                              onClick={handleCheck}
-                            ></i>
-                          )}
-                          {item.bought === true && (
-                            <i className="fa fa-check icon" aria-hidden="true"></i>
-                          )}
-                          <p className="m-0 ml-3 itemName">{item.itemName}</p>
-                        </div>
-                        <i
-                          className="fa fa-minus-square iconsize-red mr-1 text-danger"
-                          onClick={handleMinus}
-                          item={index}
-                        ></i>
-                      </li>
-                    );
-                  })}
+                {items.sort().map((item, index) => {
+                  return (
+                    <li
+                      key={index}
+                      className="bg-light pb-4 mt-2 d-flex justify-content-between align-items-center"
+                    >
+                      <div className="d-flex align-items-center ">
+                        {item.bought === false && (
+                          <i
+                            className="fa fa-square square "
+                            item={index}
+                            onClick={handleCheck}
+                          ></i>
+                        )}
+                        {item.bought === true && (
+                          <i className="fa fa-check icon" aria-hidden="true"></i>
+                        )}
+                        <p className="m-0 ml-3 itemName">{item.itemName}</p>
+                      </div>
+                      <i
+                        className="fa fa-minus-square iconsize-red mr-1 text-danger"
+                        onClick={handleMinus}
+                        item={index}
+                      ></i>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           </div>
