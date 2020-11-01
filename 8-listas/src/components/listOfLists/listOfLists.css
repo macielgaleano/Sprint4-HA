@@ -1,0 +1,33 @@
+body {
+  font-family: "Open Sans", sans-serif;
+  background: #f2f2f2;
+}
+
+.list {
+  padding: 0 1rem;
+  padding-top: 1rem;
+  padding-bottom: 0.5rem;
+  padding-bottom: 1.7rem;
+  border-radius: 10px;
+}
+
+.list .header .listQuantityItems {
+  font-size: 1.5rem;
+}
+
+.list .header .listDateCreated {
+  font-family: "Open Sans", sans-serif;
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.listDateCreated {
+  color: rgb(211, 207, 207);
+}
+
+.addListIcon {
+  float: right;
+  margin-top: 20px;
+  font-size: 2.8rem;
+  color: rgb(58, 153, 58);
+}
