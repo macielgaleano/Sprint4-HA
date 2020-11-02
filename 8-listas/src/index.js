@@ -1,29 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import { combineReducers, createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
-import thunk from "redux-thunk";
-import logger from "redux-logger";
-import { persistReducer } from "redux-persist";
-import storage from "redux-persist/lib/storage";
-
-const rootReducer = combineReducers({});
-
-const persistConfig = {
-  key: "authType",
-  storage: storage,
-  whitelist: ["rootReducer"], // which reducer want to store
-};
-
-const pReducer = persistReducer(persistConfig, rootReducer);
-
-const middleware = applyMiddleware(thunk, logger);
-const store = createStore(pReducer, middleware);
+import { store, persistor } from "./configureStore";
+import { PersistGate } from "redux-persist/integration/react";
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <PersistGate loading={null} persistor={persistor}>
+      <App />
+    </PersistGate>
   </Provider>,
   document.getElementById("root")
 );

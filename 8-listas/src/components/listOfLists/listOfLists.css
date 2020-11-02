@@ -31,3 +31,14 @@ body {
   font-size: 2.8rem;
   color: rgb(58, 153, 58);
 }
+
+.icon-remove {
+  font-size: 1.2rem;
+}
+
+.listName {
+  text-decoration: none;
+  color: white;
+  font-size: 2.2rem;
+  padding-bottom: 10px;
+}
