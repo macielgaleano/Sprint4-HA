@@ -1,0 +1,9 @@
+input[type="text"] {
+  width: 80%;
+  border: none;
+  border-bottom: 2px solid white;
+}
+
+.icon {
+  font-size: 2rem;
+}
